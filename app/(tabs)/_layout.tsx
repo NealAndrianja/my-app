@@ -1,35 +1,34 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Ionicons } from "@expo/vector-icons";
+import { Tabs } from "expo-router";
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
-  );
+export default function TabsLayout() {
+    return (
+        <Tabs
+            screenOptions={{
+                tabBarActiveTintColor: "#ffd33d",
+                tabBarStyle: { backgroundColor: "#25292e" },
+                headerStyle: { backgroundColor: "#25292e" },
+                headerTintColor: "#fff",
+                headerShadowVisible: false
+            }}>
+            <Tabs.Screen name="index" options={{
+                headerTitle: "Home",
+                tabBarIcon: ({ focused, color }) =>
+                    (<Ionicons
+                        name={focused ? "home-sharp" : "home-outline"}
+                        size={24}
+                        color={color}
+                    />)
+            }} />
+            <Tabs.Screen name="about" options={{ headerTitle: "About",
+                tabBarIcon: ({ focused, color }) =>
+                    (<Ionicons
+                        name={focused ? "information-circle-sharp" : "information-circle-outline"}
+                        size={24}
+                        color={color}
+                    />)
+             }} />
+            <Tabs.Screen name="not-found" options={{ headerShown: false }} />
+        </Tabs>
+    );
 }
