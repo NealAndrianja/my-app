@@ -24,8 +24,8 @@ function EmojiSticker({ imageSize, stickerSource }: Props) {
         })
 
     const drag = Gesture.Pan().onChange(event => {
-        translateX.value += event.translationX
-        translateY.value += event.translationY
+        translateX.value += event.changeX
+        translateY.value += event.changeY
     })
 
     const containerStyle = useAnimatedStyle(() => {
